@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "N0C2NoYZp7AJuzGjFcTH5g8cSpbEJbNjLmzlf7Pb4M+tgVFJovHfY90P1ZLZLz3+K6PlazGtI0FBB/j4zDbeMg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kania\\source\\repos\\MicroserviceWithAKS\\ShoppingApp\\ShoppingApp\\ShoppingApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512"
+  ],
+  "logs": []
+}
