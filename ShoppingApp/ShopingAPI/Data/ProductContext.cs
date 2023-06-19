@@ -1,0 +1,78 @@
+﻿using MongoDB.Driver;
+using ShopingAPI.Model;
+using System.Security.Cryptography.X509Certificates;
+
+namespace ShopingAPI.Data
+{
+    public class ProductContext
+    {
+        public IMongoCollection<Product> products { get; }
+       public ProductContext(IConfiguration configuration) {
+            var client = new MongoClient(configuration["DatabaseSetting:ConnectionString"]);
+            var db = client.GetDatabase(configuration["DatabaseSetting:DatabaseName"]);
+            products = db.GetCollection<Product>(configuration["DatabaseSetting:CollectionName"]);
+
+            SeedData();
+       }
+
+        private void SeedData()
+        {
+            var filter = Builders<Product>.Filter.Empty;
+            var data = new List<Product>
+        {
+                new Product()
+                {
+                    Name = "IPhone X",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-1.png",
+                    Price = 950.00M,
+                    Category = "Smart Phone"
+                },
+                new Product()
+                {
+                    Name = "Samsung 10",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-2.png",
+                    Price = 840.00M,
+                    Category = "Smart Phone"
+                },
+                new Product()
+                {
+                    Name = "Huawei Plus",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-3.png",
+                    Price = 650.00M,
+                    Category = "White Appliances"
+                },
+                new Product()
+                {
+                    Name = "Xiaomi Mi 9",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-4.png",
+                    Price = 470.00M,
+                    Category = "White Appliances"
+                },
+                new Product()
+                {
+                    Name = "HTC U11+ Plus",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-5.png",
+                    Price = 380.00M,
+                    Category = "Smart Phone"
+                },
+                new Product()
+                {
+                    Name = "LG G7 ThinQ EndofCourse",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-6.png",
+                    Price = 240.00M,
+                    Category = "Home Kitchen"
+                }
+        };
+            if (products.CountDocuments(filter) == 0)
+            {
+                products.InsertMany(data);
+            }
+        }
+    }
+}

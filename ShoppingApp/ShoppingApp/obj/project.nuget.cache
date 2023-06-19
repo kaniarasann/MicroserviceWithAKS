@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "N0C2NoYZp7AJuzGjFcTH5g8cSpbEJbNjLmzlf7Pb4M+tgVFJovHfY90P1ZLZLz3+K6PlazGtI0FBB/j4zDbeMg==",
+  "dgSpecHash": "XyReXwu1iNuDxCXr3oLlZ0VooavHvjGN4rUJoTnYfDOpIpyD07ptHmn0XeNpKZDA8iR1e46TzpY8ZkAYnV9DZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kania\\source\\repos\\MicroserviceWithAKS\\ShoppingApp\\ShoppingApp\\ShoppingApp.csproj",
+  "projectFilePath": "c:\\Users\\kania\\source\\repos\\MicroserviceWithAKS\\ShoppingApp\\ShoppingApp\\ShoppingApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\kania\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512"
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
+    "C:\\Users\\kania\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.5\\microsoft.netcore.app.ref.7.0.5.nupkg.sha512",
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.5\\microsoft.windowsdesktop.app.ref.7.0.5.nupkg.sha512",
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.5\\microsoft.aspnetcore.app.ref.7.0.5.nupkg.sha512",
+    "C:\\Users\\kania\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.5\\microsoft.netcore.app.host.win-x64.7.0.5.nupkg.sha512"
   ],
   "logs": []
 }

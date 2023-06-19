@@ -1,0 +1,88 @@
+name: dockercompose5907395908640374261
+services:
+  shopingapi:
+    build:
+      context: C:\Users\kania\source\repos\MicroserviceWithAKS\ShoppingApp
+      dockerfile: ShopingAPI/Dockerfile
+    container_name: shopingapi
+    depends_on:
+      shopping.db:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      DatabaseSetting__ConnectionString: mongodb://shopping-mongo:27017
+    image: shopingapi
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "8001"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\kania\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\kania\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+  shopping.db:
+    container_name: shopping-mongo
+    image: mongo
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 27017
+      published: "27017"
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: bind
+      source: /site
+      target: /data/db
+      bind:
+        create_host_path: true
+  shoppingapp:
+    build:
+      context: C:\Users\kania\source\repos\MicroserviceWithAKS\ShoppingApp
+      dockerfile: ShoppingApp/Dockerfile
+    container_name: shoppingapp
+    depends_on:
+      shopingapi:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      ApiURL: http://shopingapi
+    image: shoppingapp
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "8000"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\kania\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\kania\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose5907395908640374261_default

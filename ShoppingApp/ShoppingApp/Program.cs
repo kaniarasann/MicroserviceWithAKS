@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpClient("ShoppingAPIClinet", c => {
+    c.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiURL"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -11,7 +13,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
