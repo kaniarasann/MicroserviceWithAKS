@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shoppingapi
+  name: shoppingclient
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: shoppingapi
+      app: shoppingclient
   template:
     metadata:
       labels:
-        app: shoppingapi
+        app: shoppingclient
     spec:
       containers:
-      - name: shoppingapi
-        image: kaniarasan19/shopping_api:latest
+      - name: shoppingclient
+        image: kaniacr.azurecr.io/shopping_app:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -22,24 +23,24 @@ spec:
           value: development
         - name: ASPNETCORE_URLS
           value: http://+:80
-        - name: DatabaseSetting__ConnectionString
+        - name: ApiURL
           valueFrom:
             configMapKeyRef:
-              name: "mongo-config"
-              key: connection_string
+              name: "shopping-client-configmap"
+              key: API_URL
+      imagePullSecrets:
+        - name: acr-secret
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: shoppingapiservice
+  name: shoppingclientservice
 spec:
+  type: LoadBalancer
   selector:
-    app: shoppingapi
-  type: NodePort
+    app: shoppingclient   
   ports:
   - port: 80
-    targetPort: 80
-    nodePort: 31000
     protocol: TCP
 

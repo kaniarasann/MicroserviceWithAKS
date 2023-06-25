@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: shoppingapi
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: shoppingapi
@@ -11,9 +12,11 @@ spec:
       labels:
         app: shoppingapi
     spec:
+      imagePullSecrets:
+        - name: acr-secret
       containers:
       - name: shoppingapi
-        image: kaniarasan19/shopping_api:latest
+        image: kaniacr.azurecr.io/shopping_api:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -36,10 +39,7 @@ metadata:
 spec:
   selector:
     app: shoppingapi
-  type: NodePort
   ports:
   - port: 80
-    targetPort: 80
-    nodePort: 31000
     protocol: TCP
 

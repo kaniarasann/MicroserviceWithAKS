@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: shopping-client-configmap
 data:
-  API_URL: http://shoppingapiservice:80
+  API_URL: http://shoppingapiservice
